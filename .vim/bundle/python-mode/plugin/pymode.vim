@@ -12,6 +12,7 @@ endif
 if !has('python')
     echoerr expand("<sfile>:t") . " required vim compiled with +python."
     let g:pymode_lint       = 0
+    let g:pymode_rope       = 0
     let g:pymode_path       = 0
     let g:pymode_doc        = 0
     let g:pymode_run        = 0
@@ -112,6 +113,12 @@ if !pymode#Default("g:pymode_lint", 1) || g:pymode_lint
         sign define E text=EE texthl=Error
         sign define I text=II texthl=Info
 
+        if !pymode#Default("g:pymode_lint_signs_always_visible", 0) || g:pymode_lint_signs_always_visible
+            " Show the sign's ruller if asked for, even it there's no error to show
+            sign define __dummy__
+            autocmd BufRead,BufNew * call RopeShowSignsRulerIfNeeded()
+        endif
+
     endif
 
     " DESC: Set default pylint configuration
@@ -173,6 +180,142 @@ endif
 
 " }}}
 
+
+" Rope {{{
+
+if !pymode#Default("g:pymode_rope", 1) || g:pymode_rope
+
+    " OPTION: g:pymode_rope_auto_project -- bool. Auto create ropeproject
+    call pymode#Default("g:pymode_rope_auto_project", 1)
+
+    " OPTION: g:pymode_rope_auto_project_open -- bool.
+    " Auto open existing projects, ie, if the current directory has a
+    " `.ropeproject` subdirectory.
+    call pymode#Default("g:pymode_rope_auto_project_open", 1)
+
+    " OPTION: g:pymode_rope_auto_session_manage -- bool
+    call pymode#Default("g:pymode_rope_auto_session_manage", 0)
+
+    " OPTION: g:pymode_rope_enable_autoimport -- bool. Enable autoimport
+    call pymode#Default("g:pymode_rope_enable_autoimport", 1)
+
+    " OPTION: g:pymode_rope_autoimport_generate -- bool.
+    call pymode#Default("g:pymode_rope_autoimport_generate", 1)
+
+    " OPTION: g:pymode_rope_autoimport_underlines -- bool.
+    call pymode#Default("g:pymode_rope_autoimport_underlineds", 0)
+
+    " OPTION: g:pymode_rope_codeassist_maxfiles -- bool.
+    call pymode#Default("g:pymode_rope_codeassist_maxfixes", 10)
+
+    " OPTION: g:pymode_rope_sorted_completions -- bool.
+    call pymode#Default("g:pymode_rope_sorted_completions", 1)
+
+    " OPTION: g:pymode_rope_extended_complete -- bool.
+    call pymode#Default("g:pymode_rope_extended_complete", 1)
+
+    " OPTION: g:pymode_rope_autoimport_modules -- array.
+    call pymode#Default("g:pymode_rope_autoimport_modules", ["os","shutil","datetime"])
+
+    " OPTION: g:pymode_rope_confirm_saving -- bool.
+    call pymode#Default("g:pymode_rope_confirm_saving", 1)
+
+    " OPTION: g:pymode_rope_global_prefix -- string.
+    call pymode#Default("g:pymode_rope_global_prefix", "<C-x>p")
+
+    " OPTION: g:pymode_rope_local_prefix -- string.
+    call pymode#Default("g:pymode_rope_local_prefix", "<C-c>r")
+
+    " OPTION: g:pymode_rope_short_prefix -- string.
+    call pymode#Default("g:pymode_rope_short_prefix", "<C-c>")
+
+    " OPTION: g:pymode_rope_map_space -- string.
+    call pymode#Default("g:pymode_rope_map_space", 1)
+
+    " OPTION: g:pymode_rope_vim_completion -- bool.
+    call pymode#Default("g:pymode_rope_vim_completion", 1)
+
+    " OPTION: g:pymode_rope_guess_project -- bool.
+    call pymode#Default("g:pymode_rope_guess_project", 1)
+
+    " OPTION: g:pymode_rope_goto_def_newwin -- str ('new', 'vnew', '').
+    call pymode#Default("g:pymode_rope_goto_def_newwin", "")
+
+    " OPTION: g:pymode_rope_always_show_complete_menu -- bool.
+    call pymode#Default("g:pymode_rope_always_show_complete_menu", 0)
+
+    " DESC: Init Rope
+    py import ropevim
+
+    fun! RopeCodeAssistInsertMode() "{{{
+        call RopeCodeAssist()
+        return ""
+    endfunction "}}}
+
+    fun! RopeOpenExistingProject() "{{{
+        if isdirectory(getcwd() . '/.ropeproject')
+            " In order to pass it the quiet kwarg I need to open the project
+            " using python and not vim, which should be no major issue
+            py ropevim._interface.open_project(quiet=True)
+            return ""
+        endif
+    endfunction "}}}
+
+    fun! RopeLuckyAssistInsertMode() "{{{
+        call RopeLuckyAssist()
+        return ""
+    endfunction "}}}
+
+    fun! RopeOmni(findstart, base) "{{{
+        if a:findstart
+            py ropevim._interface._find_start()
+            return g:pymode_offset
+        else
+            call RopeOmniComplete()
+            return g:pythoncomplete_completions
+        endif
+    endfunction "}}}
+
+    fun! RopeShowSignsRulerIfNeeded() "{{{
+        if &ft == 'python'
+            execute printf('silent! sign place 1 line=1 name=__dummy__ file=%s', expand("%:p"))
+        endif
+     endfunction "}}}
+
+
+    " Rope menu
+    menu <silent> Rope.Autoimport :RopeAutoImport<CR>
+    menu <silent> Rope.ChangeSignature :RopeChangeSignature<CR>
+    menu <silent> Rope.CloseProject :RopeCloseProject<CR>
+    menu <silent> Rope.GenerateAutoImportCache :RopeGenerateAutoimportCache<CR>
+    menu <silent> Rope.ExtractVariable :RopeExtractVariable<CR>
+    menu <silent> Rope.ExtractMethod :RopeExtractMethod<CR>
+    menu <silent> Rope.Inline :RopeInline<CR>
+    menu <silent> Rope.IntroduceFactory :RopeIntroduceFactory<CR>
+    menu <silent> Rope.FindFile :RopeFindFile<CR>
+    menu <silent> Rope.OpenProject :RopeOpenProject<CR>
+    menu <silent> Rope.Move :RopeMove<CR>
+    menu <silent> Rope.MoveCurrentModule :RopeMoveCurrentModule<CR>
+    menu <silent> Rope.ModuleToPackage :RopeModuleToPackage<CR>
+    menu <silent> Rope.Redo :RopeRedo<CR>
+    menu <silent> Rope.Rename :RopeRename<CR>
+    menu <silent> Rope.RenameCurrentModule :RopeRenameCurrentModule<CR>
+    menu <silent> Rope.Restructure :RopeRestructure<CR>
+    menu <silent> Rope.Undo :RopeUndo<CR>
+    menu <silent> Rope.UseFunction :RopeUseFunction<CR>
+
+    if !pymode#Default("g:pymode_rope_auto_project_open", 1) || g:pymode_rope_auto_project_open
+        call RopeOpenExistingProject()
+    endif
+
+     if !pymode#Default("g:pymode_rope_auto_session_manage", 0) || g:pymode_rope_auto_session_manage
+        autocmd VimLeave * call RopeSaveSession()
+        autocmd VimEnter * call RopeRestoreSession()
+     endif
+
+endif
+
+" }}}
 
 
 " OPTION: g:pymode_folding -- bool. Enable python-mode folding for pyfiles.

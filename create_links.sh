@@ -3,6 +3,6 @@
 cd $HOME 
 for dotfile in $(find .dotfiles -maxdepth 1 | grep -e "^\.dotfiles/\..*" | grep -v git)
 do
-    ln -v -s $dotfile .
+    ln -v -f -s $dotfile .
 done
 cd - 1>/dev/null
