@@ -14,6 +14,7 @@ set laststatus=2
  filetype plugin indent on
 syntax on
 map <F12> :NERDTreeTabsToggle<CR>
+map <F5> :tabe %<CR>
 set smartindent
 set tabstop=4
 set shiftwidth=4
