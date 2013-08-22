@@ -30,3 +30,6 @@ map <C-h> <C-w>h
 map <C-j> <C-w>j
 map <C-k> <C-w>k
 map <C-l> <C-w>l
+map ö [q
+map ä ]q
+set statusline=%<%f\ %{fugitive#statusline()}%=\ lin:%l\/%L\ col:%2c\ pos:%4o\ %P
