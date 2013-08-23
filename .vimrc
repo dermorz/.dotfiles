@@ -33,3 +33,13 @@ map <C-l> <C-w>l
 map ö [
 map ä ]
 set statusline=%<%f\ %{fugitive#statusline()}%=\ lin:%l\/%L\ col:%2c\ pos:%4o\ %P
+" Bubble single lines
+nmap <C-Up> [e
+nmap <C-Down> ]e
+" Bubble multiple lines
+vmap <C-Up> [egv
+vmap <C-Down> ]egv
+nmap <C-Left> <<
+nmap <C-Right> >>
+vmap <C-Left> <<
+vmap <C-Right> >>
