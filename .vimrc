@@ -20,8 +20,9 @@ set tabstop=4
 set shiftwidth=4
 set expandtab
 set list
-set listchars=eol:¬,tab:»\ ,nbsp:■,extends:→,precedes:←
+set listchars=eol:¬,tab:»\ ,nbsp:·,extends:→,precedes:←
 set colorcolumn=80
+set nofoldenable
 map ,e :FufCoverageFile<CR>
 map ,E :FufFile<CR>
 map ,r :FufTag<CR>
@@ -34,12 +35,14 @@ map ö [
 map ä ]
 set statusline=%<%f\ %{fugitive#statusline()}%=\ lin:%l\/%L\ col:%2c\ pos:%4o\ %P
 " Bubble single lines
-nmap <C-Up> [e
-nmap <C-Down> ]e
+nmap <C-Up> öe
+nmap <C-Down> äe
 " Bubble multiple lines
-vmap <C-Up> [egv
-vmap <C-Down> ]egv
+vmap <C-Up> öegv
+vmap <C-Down> äegv
 nmap <C-Left> <<
 nmap <C-Right> >>
-vmap <C-Left> <<
-vmap <C-Right> >>
+vmap <C-Left> <
+vmap <C-Right> >
+let g:zenburn_high_Contrast=1
+color zenburn
