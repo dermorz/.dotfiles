@@ -4,7 +4,6 @@ set hlsearch
 set cursorline
 set number
 set ruler
-set laststatus=2
 " Pathogen load
  filetype off
 
@@ -23,17 +22,15 @@ set list
 set listchars=eol:¬,tab:»\ ,nbsp:·,extends:→,precedes:←
 set colorcolumn=80
 set nofoldenable
-map ,e :FufCoverageFile<CR>
-map ,E :FufFile<CR>
-map ,r :FufTag<CR>
-map ,R :FufTagWithCursorWord<CR>
 map <C-h> <C-w>h
 map <C-j> <C-w>j
 map <C-k> <C-w>k
 map <C-l> <C-w>l
 map ö [
 map ä ]
-set statusline=%<%f\ %{fugitive#statusline()}%=\ lin:%l\/%L\ col:%2c\ pos:%4o\ %P
+" Powerline setup
+set guifont=Anonymous\ Pro
+set laststatus=2
 " Bubble single lines
 nmap <C-Up> öe
 nmap <C-Down> äe
@@ -46,3 +43,5 @@ vmap <C-Left> <
 vmap <C-Right> >
 let g:zenburn_high_Contrast=1
 color zenburn
+let g:pymode_rope = 0
+let g:pymode_lint_ignore="E501,C901"
