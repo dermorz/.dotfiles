@@ -17,6 +17,7 @@ map <F5> :tabe %<CR>
 set smartindent
 set tabstop=4
 set shiftwidth=4
+set backspace=2
 set expandtab
 set list
 set listchars=eol:¬,tab:»\ ,nbsp:·,extends:→,precedes:←
