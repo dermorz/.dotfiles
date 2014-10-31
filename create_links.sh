@@ -1,8 +1,5 @@
 #!/bin/sh
 
-git submodule init
-git submodule update
-
 cd $HOME 
 for dotfile in $(find .dotfiles -maxdepth 1 | grep -e "^\.dotfiles/\..*" | grep -v git)
 do
