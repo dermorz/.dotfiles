@@ -1,5 +1,4 @@
 My (non-sensitive) dotfiles.
 
-clone in $HOME and run 
-
+    git clone --recursive https://github.com/moritzpein/.dotfiles.git
     sh $HOME/.dotfiles/create_links.sh
