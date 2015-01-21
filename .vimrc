@@ -46,3 +46,6 @@ let g:zenburn_high_Contrast=1
 color zenburn
 let g:pymode_rope = 0
 let g:pymode_lint_ignore="E501,C901"
+set diffopt+=vertical
+" format json with python
+command JSON %!python -m json.tool
