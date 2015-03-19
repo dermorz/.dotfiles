@@ -50,3 +50,4 @@ let g:pymode_lint_ignore="E501,C901"
 set diffopt+=vertical
 " format json with python
 command JSON %!python -m json.tool
+set pastetoggle=<F2>
