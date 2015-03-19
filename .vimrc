@@ -13,6 +13,7 @@ set ruler
  filetype plugin indent on
 syntax on
 map <F12> :NERDTreeTabsToggle<CR>
+let NERDTreeIgnore = ['\.pyc$']
 map <F5> :tabe %<CR>
 set smartindent
 set tabstop=4
