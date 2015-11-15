@@ -1,53 +1,49 @@
+" Vundle setup
+"
 set nocompatible
-set hidden
-set hlsearch
-set cursorline
-set number
-set ruler
-" Pathogen load
- filetype off
+filetype off
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
 
- call pathogen#infect()
- call pathogen#helptags()
+" let Vundle manage itself
+Plugin 'gmarik/Vundle.vim'
 
- filetype plugin indent on
-syntax on
-map <F12> :NERDTreeTabsToggle<CR>
-let NERDTreeIgnore = ['\.pyc$']
-map <F5> :tabe %<CR>
-set smartindent
-set tabstop=4
-set shiftwidth=4
-set backspace=2
-set expandtab
-set list
-set listchars=eol:¬,tab:»\ ,nbsp:·,extends:→,precedes:←
-set colorcolumn=80
-set nofoldenable
-map <C-h> <C-w>h
-map <C-j> <C-w>j
-map <C-k> <C-w>k
-map <C-l> <C-w>l
-map ö [
-map ä ]
-" Powerline setup
-set guifont=Anonymous\ Pro
-set laststatus=2
-" Bubble single lines
-nmap <C-Up> öe
-nmap <C-Down> äe
-" Bubble multiple lines
-vmap <C-Up> öegv
-vmap <C-Down> äegv
-nmap <C-Left> <<
-nmap <C-Right> >>
-vmap <C-Left> <
-vmap <C-Right> >
-let g:zenburn_high_Contrast=1
-color zenburn
-let g:pymode_rope = 0
-let g:pymode_lint_ignore="E501,C901"
-set diffopt+=vertical
-" format json with python
-command JSON %!python -m json.tool
-set pastetoggle=<F2>
+" my plugins
+"
+Plugin 'bling/vim-airline' 
+Plugin 'tpope/vim-fugitive'
+Plugin 'davidhalter/jedi-vim'
+"
+" my plugins
+
+call vundle#end()
+filetype plugin indent on
+"
+" Vundle setup
+
+" general stuff
+let mapleader=" "
+
+" split navigation
+nnoremap <C-J> <C-W><C-J>
+nnoremap <C-K> <C-W><C-K>
+nnoremap <C-L> <C-W><C-L>
+nnoremap <C-H> <C-W><C-H>
+
+" unmap arrow keys to force myself to use HJKL
+for prefix in ['i', 'n', 'v']
+  for key in ['<Up>', '<Down>', '<Left>', '<Right>']
+    exe prefix . "noremap" . key . " <Nop>"
+  endfor
+endfor
+
+" python stuff
+" au BufNewFile,BufRead *.py
+"     \ set tabstop=4 |
+"     \ set softtabstop=4 |
+"     \ set shiftwidth=4 |
+"     \ set textwidth=79 |
+"     \ set expandtab |
+"     \ set autoindent |
+"     \ set fileformat=unix
+" au BufNewFile,BufRead *.py,*.pyw,*.c,*.h match BadWhitespace /\s\+$/
