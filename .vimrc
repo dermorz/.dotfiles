@@ -66,6 +66,7 @@ set hidden
 set hlsearch
 set cursorline
 set number
+set relativenumber
 set ruler
 syntax on
 set list
