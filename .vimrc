@@ -41,7 +41,6 @@ endfor
 
 " run flake8 on every python file save
 autocmd BufWritePost *.py call Flake8()
-let g:flake8_ignore="E501"
 
 " jedi autocomplete options
 "
