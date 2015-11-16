@@ -46,8 +46,10 @@ vmap <C-Right> >
 let g:zenburn_high_Contrast=1
 color zenburn
 let g:pymode_rope = 0
-let g:pymode_lint_ignore="E501,C901"
+let g:pymode_lint_checkers = ['pyflakes', 'pep8', 'mccabe']
+let g:pymode_lint_ignore="E501,C901,C0111"
 set diffopt+=vertical
 " format json with python
 command JSON %!python -m json.tool
 set pastetoggle=<F2>
+set wildignore+=*.pyc
