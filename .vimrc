@@ -15,6 +15,7 @@ Plugin 'tpope/vim-fugitive'
 Plugin 'davidhalter/jedi-vim'
 Plugin 'nvie/vim-flake8'
 Plugin 'ctrlpvim/ctrlp.vim'
+Plugin 'hynek/vim-python-pep8-indent'
 "
 " my plugins
 
