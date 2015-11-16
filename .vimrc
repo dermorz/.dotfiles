@@ -10,9 +10,11 @@ Plugin 'gmarik/Vundle.vim'
 
 " my plugins
 "
-Plugin 'bling/vim-airline' 
+Plugin 'bling/vim-airline'
 Plugin 'tpope/vim-fugitive'
 Plugin 'davidhalter/jedi-vim'
+Plugin 'nvie/vim-flake8'
+Plugin 'ctrlpvim/ctrlp.vim'
 "
 " my plugins
 
@@ -37,13 +39,40 @@ for prefix in ['i', 'n', 'v']
   endfor
 endfor
 
+" run flake8 on every python file save
+autocmd BufWritePost *.py call Flake8()
+let g:flake8_ignore="E501"
+
+" jedi autocomplete options
+"
+let g:jedi#use_tabs_not_buffers = 1
+let g:jedi#popup_on_dot = 0
+"
+
 " python stuff
-" au BufNewFile,BufRead *.py
-"     \ set tabstop=4 |
-"     \ set softtabstop=4 |
-"     \ set shiftwidth=4 |
-"     \ set textwidth=79 |
-"     \ set expandtab |
-"     \ set autoindent |
-"     \ set fileformat=unix
-" au BufNewFile,BufRead *.py,*.pyw,*.c,*.h match BadWhitespace /\s\+$/
+autocmd BufNewFile,BufRead *.py
+     \ set tabstop=4 |
+     \ set softtabstop=4 |
+     \ set shiftwidth=4 |
+     \ set expandtab |
+     \ set autoindent |
+     \ set fileformat=unix
+highlight Overlength ctermbg=gray ctermfg=white
+autocmd BufNewFile,BufRead *.py,*.pyw,*.c,*.h match Overlength /\%>80v.\+/
+
+" general stuff
+set nocompatible
+set hidden
+set hlsearch
+set cursorline
+set number
+set ruler
+syntax on
+set list
+set listchars=eol:¬,tab:»\ ,nbsp:·,trail:·,extends:→,precedes:←
+set nofoldenable
+let g:zenburn_high_Contrast=1
+color zenburn
+set pastetoggle=<F2>
+" format json with python
+command JSON %!python -m json.tool
