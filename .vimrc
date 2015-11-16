@@ -56,6 +56,8 @@ set cursorline
 set number
 set relativenumber
 set ruler
+set splitbelow
+set splitright
 syntax on
 set list
 set listchars=eol:¬,tab:»\ ,nbsp:·,trail:·,extends:→,precedes:←
