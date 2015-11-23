@@ -69,6 +69,8 @@ set nofoldenable
 let g:zenburn_high_Contrast=1
 color zenburn
 set pastetoggle=<F2>
+set backspace=2
+
 " format json with python
 command JSON %!python -m json.tool
 
