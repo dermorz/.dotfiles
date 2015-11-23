@@ -42,6 +42,9 @@ endfor
 
 " run flake8 on every python file save
 autocmd BufWritePost *.py call Flake8()
+" more flake8
+let g:flake8_show_in_gutter=1
+let g:flake8_show_in_file=1
 
 " jedi autocomplete options
 "
