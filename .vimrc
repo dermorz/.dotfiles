@@ -79,3 +79,12 @@ autocmd BufNewFile,BufRead *.py
      \ set fileformat=unix
 highlight OverLength ctermfg=darkgray
 autocmd BufNewFile,BufRead *.py,*.pyw,*.c,*.h match OverLength /\%81v.*/
+
+" bash stuff
+autocmd BufNewFile,BufRead *.sh
+     \ set tabstop=2 |
+     \ set softtabstop=2 |
+     \ set shiftwidth=2 |
+     \ set expandtab |
+     \ set autoindent |
+     \ set fileformat=unix
