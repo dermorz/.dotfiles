@@ -7,6 +7,7 @@ do
     ln -f -s $dotfile .
 done
 cd - 1>/dev/null
+sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 
 
 echo "(2/4) vundle"
