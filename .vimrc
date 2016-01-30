@@ -1,55 +1,95 @@
+" Vundle setup
+"
+set nocompatible
+filetype off
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+
+" let Vundle manage itself
+Plugin 'VundleVim/Vundle.vim'
+
+" my plugins
+"
+Plugin 'bling/vim-airline'
+Plugin 'tpope/vim-fugitive'
+Plugin 'davidhalter/jedi-vim'
+Plugin 'nvie/vim-flake8'
+Plugin 'ctrlpvim/ctrlp.vim'
+Plugin 'hynek/vim-python-pep8-indent'
+"
+" my plugins
+
+call vundle#end()
+filetype plugin indent on
+"
+" Vundle setup
+
+" general stuff
+let mapleader=" "
+
+" split navigation
+nnoremap <C-J> <C-W><C-J>
+nnoremap <C-K> <C-W><C-K>
+nnoremap <C-L> <C-W><C-L>
+nnoremap <C-H> <C-W><C-H>
+
+" unmap arrow keys to force myself to use HJKL
+for prefix in ['i', 'n', 'v']
+  for key in ['<Up>', '<Down>', '<Left>', '<Right>']
+    exe prefix . "noremap" . key . " <Nop>"
+  endfor
+endfor
+
+" run flake8 on every python file save
+autocmd BufWritePost *.py call Flake8()
+" more flake8
+let g:flake8_show_in_gutter=1
+let g:flake8_show_in_file=1
+
+" jedi autocomplete options
+"
+let g:jedi#use_tabs_not_buffers = 1
+let g:jedi#popup_on_dot = 0
+"
+
+" general stuff
 set nocompatible
 set hidden
 set hlsearch
 set cursorline
 set number
+set relativenumber
 set ruler
-" Pathogen load
- filetype off
-
- call pathogen#infect()
- call pathogen#helptags()
-
- filetype plugin indent on
+set splitbelow
+set splitright
 syntax on
-map <F12> :NERDTreeTabsToggle<CR>
-let NERDTreeIgnore = ['\.pyc$']
-map <F5> :tabe %<CR>
-set smartindent
-set tabstop=4
-set shiftwidth=4
-set backspace=2
-set expandtab
 set list
-set listchars=eol:¬,tab:»\ ,nbsp:·,extends:→,precedes:←
-set colorcolumn=80
+set listchars=eol:¬,tab:»\ ,nbsp:·,trail:·,extends:→,precedes:←
 set nofoldenable
-map <C-h> <C-w>h
-map <C-j> <C-w>j
-map <C-k> <C-w>k
-map <C-l> <C-w>l
-map ö [
-map ä ]
-" Powerline setup
-set guifont=Anonymous\ Pro
-set laststatus=2
-" Bubble single lines
-nmap <C-Up> öe
-nmap <C-Down> äe
-" Bubble multiple lines
-vmap <C-Up> öegv
-vmap <C-Down> äegv
-nmap <C-Left> <<
-nmap <C-Right> >>
-vmap <C-Left> <
-vmap <C-Right> >
 let g:zenburn_high_Contrast=1
 color zenburn
-let g:pymode_rope = 0
-let g:pymode_lint_checkers = ['pyflakes', 'pep8', 'mccabe']
-let g:pymode_lint_ignore="E501,C901,C0111"
-set diffopt+=vertical
+set pastetoggle=<F2>
+set backspace=2
+
 " format json with python
 command JSON %!python -m json.tool
-set pastetoggle=<F2>
-set wildignore+=*.pyc
+
+" python stuff
+autocmd BufNewFile,BufRead *.py
+     \ set tabstop=4 |
+     \ set softtabstop=4 |
+     \ set shiftwidth=4 |
+     \ set expandtab |
+     \ set autoindent |
+     \ set fileformat=unix
+highlight OverLength ctermfg=darkgray
+autocmd BufNewFile,BufRead *.py,*.pyw,*.c,*.h match OverLength /\%81v.*/
+
+" bash stuff
+autocmd BufNewFile,BufRead *.sh
+     \ set tabstop=2 |
+     \ set softtabstop=2 |
+     \ set shiftwidth=2 |
+     \ set expandtab |
+     \ set autoindent |
+     \ set fileformat=unix
