@@ -71,6 +71,9 @@ color zenburn
 set pastetoggle=<F2>
 set backspace=2
 
+" airline fix
+set laststatus=2
+
 " format json with python
 command JSON %!python -m json.tool
 
