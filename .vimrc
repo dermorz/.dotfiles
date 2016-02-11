@@ -97,3 +97,14 @@ autocmd BufNewFile,BufRead *.sh
      \ set expandtab |
      \ set autoindent |
      \ set fileformat=unix
+
+function! Preserve(command)
+  let _s=@/
+  let l = line(".")
+  let c = col(".")
+  execute a:command
+  let @/=_s
+  call cursor(l, c)
+endfunction
+
+nmap _$ :call Preserve("%s/\\s\\+$//e")<CR>
