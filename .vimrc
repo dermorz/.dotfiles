@@ -87,7 +87,7 @@ autocmd BufNewFile,BufRead *.py
      \ set autoindent |
      \ set fileformat=unix
 highlight OverLength ctermfg=darkgray
-autocmd BufNewFile,BufRead *.py,*.pyw,*.c,*.h match OverLength /\%81v.*/
+autocmd BufNewFile,BufRead *.py,*.pyw,*.c,*.h match OverLength /\%101v.*/
 
 " bash stuff
 autocmd BufNewFile,BufRead *.sh
