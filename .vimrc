@@ -76,6 +76,7 @@ set laststatus=2
 
 " format json with python
 command JSON %!python -m json.tool
+map <leader>j :JSON<CR>
 
 " python stuff
 autocmd BufNewFile,BufRead *.py
