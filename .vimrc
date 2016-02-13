@@ -1,6 +1,5 @@
 set encoding=utf-8
 " Vundle setup
-"
 set nocompatible
 filetype off
 set rtp+=~/.vim/bundle/Vundle.vim
@@ -10,7 +9,6 @@ call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 
 " my plugins
-"
 Plugin 'bling/vim-airline'
 Plugin 'tpope/vim-fugitive'
 Plugin 'davidhalter/jedi-vim'
@@ -22,8 +20,6 @@ Plugin 'hynek/vim-python-pep8-indent'
 
 call vundle#end()
 filetype plugin indent on
-"
-" Vundle setup
 
 " general stuff
 let mapleader=" "
