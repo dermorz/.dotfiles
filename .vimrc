@@ -10,13 +10,14 @@ Plugin 'VundleVim/Vundle.vim'
 
 " my plugins
 Plugin 'bling/vim-airline'
-Plugin 'tpope/vim-fugitive'
-Plugin 'davidhalter/jedi-vim'
-Plugin 'nvie/vim-flake8'
+Plugin 'christoomey/vim-sort-motion'
 Plugin 'ctrlpvim/ctrlp.vim'
+Plugin 'davidhalter/jedi-vim'
 Plugin 'hynek/vim-python-pep8-indent'
-"
-" my plugins
+Plugin 'nvie/vim-flake8'
+Plugin 'tpope/vim-commentary'
+Plugin 'tpope/vim-fugitive'
+Plugin 'tpope/vim-surround'
 
 call vundle#end()
 filetype plugin indent on
@@ -25,14 +26,14 @@ filetype plugin indent on
 let mapleader=" "
 
 " split navigation
+nnoremap <C-H> <C-W><C-H>
 nnoremap <C-J> <C-W><C-J>
 nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
-nnoremap <C-H> <C-W><C-H>
 
 " unmap arrow keys to force myself to use HJKL
 for prefix in ['i', 'n', 'v']
-  for key in ['<Up>', '<Down>', '<Left>', '<Right>']
+  for key in ['<Down>', '<Left>', '<Right>', '<Up>']
     exe prefix . "noremap" . key . " <Nop>"
   endfor
 endfor
@@ -77,24 +78,25 @@ map <leader>j :JSON<CR>
 
 " python stuff
 autocmd BufNewFile,BufRead *.py
-     \ set tabstop=4 |
-     \ set softtabstop=4 |
-     \ set shiftwidth=4 |
-     \ set expandtab |
      \ set autoindent |
-     \ set fileformat=unix
+     \ set expandtab |
+     \ set fileformat=unix |
+     \ set shiftwidth=4 |
+     \ set softtabstop=4 |
+     \ set tabstop=4
 highlight OverLength ctermfg=darkgray
 autocmd BufNewFile,BufRead *.py,*.pyw,*.c,*.h match OverLength /\%101v.*/
 
 " bash stuff
 autocmd BufNewFile,BufRead *.sh
-     \ set tabstop=2 |
-     \ set softtabstop=2 |
-     \ set shiftwidth=2 |
-     \ set expandtab |
      \ set autoindent |
-     \ set fileformat=unix
+     \ set expandtab |
+     \ set fileformat=unix |
+     \ set shiftwidth=2 |
+     \ set softtabstop=2 |
+     \ set tabstop=2
 
+" helper to preserve state on commands
 function! Preserve(command)
   let _s=@/
   let l = line(".")
