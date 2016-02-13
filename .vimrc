@@ -74,7 +74,6 @@ set laststatus=2
 
 " format json with python
 command JSON %!python -m json.tool
-map <leader>j :JSON<CR>
 
 " python stuff
 autocmd BufNewFile,BufRead *.py
@@ -107,3 +106,5 @@ function! Preserve(command)
 endfunction
 
 nmap _$ :call Preserve("%s/\\s\\+$//e")<CR>
+map <leader>j :call Preserve("JSON")<CR>
+map <leader>w :w<CR>
