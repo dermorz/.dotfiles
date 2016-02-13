@@ -6,6 +6,7 @@ for dotfile in $(find .dotfiles -maxdepth 1 | grep -e "^\.dotfiles/\..*" | grep 
 do
     ln -f -s $dotfile .
 done
+ln -f -s .dotfiles/.gitconfig .
 cd - 1>/dev/null
 sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 

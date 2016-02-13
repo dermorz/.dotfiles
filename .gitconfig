@@ -1,0 +1,18 @@
+[core]
+	excludesfile = /Users/mpein/.gitignore_global
+[difftool "sourcetree"]
+	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+	path = 
+[mergetool "sourcetree"]
+	cmd = /Users/mpein/Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+	trustExitCode = true
+[user]
+	name = Moritz Pein
+[push]
+	default = matching
+[alias]
+	co = checkout
+[merge]
+	ff = false
+[pull]
+	rebase = true
