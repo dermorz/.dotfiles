@@ -11,6 +11,7 @@ Plugin 'VundleVim/Vundle.vim'
 " my plugins
 Plugin 'bling/vim-airline'
 Plugin 'christoomey/vim-sort-motion'
+Plugin 'christoomey/vim-system-copy'
 Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'davidhalter/jedi-vim'
 Plugin 'hynek/vim-python-pep8-indent'
