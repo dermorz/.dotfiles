@@ -103,6 +103,16 @@ function! Preserve(command)
   call cursor(l, c)
 endfunction
 
-nmap _$ :call Preserve("%s/\\s\\+$//e")<CR>
-map <leader>j :call Preserve("JSON")<CR>
+" some leader shortcuts
 map <leader>w :w<CR>
+map <leader>k :cprev<CR>
+map <leader>j :cnext<CR>
+
+
+" some on_write triggers
+" remove trailing whitespace
+autocmd BufWritePost *
+     \ silent call Preserve("%s/\\s\\+$//e")
+" run flake8 on this file
+autocmd BufWritePost *.py
+     \ call Flake8()
