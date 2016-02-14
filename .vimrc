@@ -9,7 +9,9 @@ call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 
 " my plugins
-Plugin 'bling/vim-airline'
+Plugin 'vim-airline/vim-airline'
+Plugin 'nanotech/jellybeans.vim'
+Plugin 'vim-airline/vim-airline-themes'
 Plugin 'christoomey/vim-sort-motion'
 Plugin 'christoomey/vim-system-copy'
 Plugin 'ctrlpvim/ctrlp.vim'
@@ -39,17 +41,13 @@ for prefix in ['i', 'n', 'v']
   endfor
 endfor
 
-" run flake8 on every python file save
-autocmd BufWritePost *.py call Flake8()
 " more flake8
 let g:flake8_show_in_gutter=1
 let g:flake8_show_in_file=1
 
 " jedi autocomplete options
-"
-let g:jedi#use_tabs_not_buffers = 1
 let g:jedi#popup_on_dot = 0
-"
+let g:jedi#show_call_signatures = "0"
 
 " general stuff
 set nocompatible
@@ -65,12 +63,11 @@ syntax on
 set list
 set listchars=eol:¬,tab:»\ ,nbsp:·,trail:·,extends:→,precedes:←
 set nofoldenable
-let g:zenburn_high_Contrast=1
-color zenburn
 set pastetoggle=<F2>
 set backspace=2
+colorscheme jellybeans
 
-" airline fix
+" airline stuff
 set laststatus=2
 
 " format json with python
