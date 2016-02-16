@@ -9,19 +9,19 @@ call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 
 " my plugins
-Plugin 'vim-airline/vim-airline'
-Plugin 'nanotech/jellybeans.vim'
-Plugin 'vim-airline/vim-airline-themes'
 Plugin 'christoomey/vim-sort-motion'
 Plugin 'christoomey/vim-system-copy'
 Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'davidhalter/jedi-vim'
 Plugin 'fisadev/vim-isort'
 Plugin 'hynek/vim-python-pep8-indent'
+Plugin 'nanotech/jellybeans.vim'
 Plugin 'nvie/vim-flake8'
 Plugin 'tpope/vim-commentary'
 Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-surround'
+Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
 
 call vundle#end()
 filetype plugin indent on
