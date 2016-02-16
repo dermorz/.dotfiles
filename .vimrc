@@ -50,6 +50,9 @@ let g:flake8_show_in_file=1
 let g:jedi#popup_on_dot = 0
 let g:jedi#show_call_signatures = "0"
 
+" vim-fugitive settings
+set diffopt+=vertical
+
 " general stuff
 set nocompatible
 set hidden
