@@ -71,6 +71,9 @@ colorscheme jellybeans
 " airline stuff
 set laststatus=2
 
+" configure sort-motion
+let g:sort_motion_flags = "ui"
+
 " format json with python
 command JSON %!python -m json.tool
 
