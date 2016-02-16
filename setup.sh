@@ -20,4 +20,4 @@ echo "(3/4) install vim plugins"
 vim +PluginInstall +qall
 
 echo "(4/4) print reminder"
-echo "-> pip install flake8 mccabe tox"
+echo "-> pip install flake8 mccabe tox isort virtualenvwrapper"
