@@ -16,6 +16,7 @@ Plugin 'christoomey/vim-sort-motion'
 Plugin 'christoomey/vim-system-copy'
 Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'davidhalter/jedi-vim'
+Plugin 'fisadev/vim-isort'
 Plugin 'hynek/vim-python-pep8-indent'
 Plugin 'nvie/vim-flake8'
 Plugin 'tpope/vim-commentary'
@@ -107,6 +108,7 @@ endfunction
 map <leader>w :w<CR>
 map <leader>k :cprev<CR>
 map <leader>j :cnext<CR>
+map <leader>i :Isort<CR>
 
 
 " some on_write triggers
