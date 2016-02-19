@@ -69,7 +69,12 @@ set listchars=eol:¬,tab:»\ ,nbsp:·,trail:·,extends:→,precedes:←
 set nofoldenable
 set pastetoggle=<F2>
 set backspace=2
-colorscheme jellybeans
+
+" color settings
+set t_Co=256
+colorscheme zenburn
+highlight UnderCursor ctermbg=130 ctermfg=7
+autocmd CursorMoved * exe printf('match UnderCursor /\V\<%s\>/', escape(expand('<cword>'), '/\'))
 
 " airline stuff
 set laststatus=2
