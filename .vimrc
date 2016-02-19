@@ -119,7 +119,7 @@ endfunction
 map <leader>w :w<CR>
 map <leader>k :cprev<CR>
 map <leader>j :cnext<CR>
-map <leader>i :Isort<CR>
+vmap <C-i> !isort -fas -sl -<CR>
 
 
 " some on_write triggers
