@@ -72,7 +72,7 @@ set backspace=2
 " color settings
 set t_Co=256
 colorscheme zenburn
-highlight UnderCursor ctermbg=130 ctermfg=7
+highlight UnderCursor ctermbg=193 ctermfg=8
 autocmd CursorMoved * exe printf('match UnderCursor /\V\<%s\>/', escape(expand('<cword>'), '/\'))
 
 " airline stuff
