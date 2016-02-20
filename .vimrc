@@ -13,7 +13,6 @@ Plugin 'christoomey/vim-sort-motion'
 Plugin 'christoomey/vim-system-copy'
 Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'davidhalter/jedi-vim'
-Plugin 'fisadev/vim-isort'
 Plugin 'hynek/vim-python-pep8-indent'
 Plugin 'nanotech/jellybeans.vim'
 Plugin 'nvie/vim-flake8'
@@ -119,7 +118,7 @@ endfunction
 map <leader>w :w<CR>
 map <leader>k :cprev<CR>
 map <leader>j :cnext<CR>
-vmap <C-i> !isort -fas -sl -<CR>
+vmap <C-i> !isort -sl -<CR>
 map <leader>, A,<ESC>
 
 
