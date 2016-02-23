@@ -126,12 +126,12 @@ map <leader>j :cnext<CR>
 vmap <C-i> !isort -<CR>
 map <leader>, A,<ESC>
 vmap <C-y> :YapfFormat<CR>
-
+map <leader>f :call Flake8()<CR>
 
 " some on_write triggers
 " remove trailing whitespace
 autocmd BufWritePost *
      \ silent call Preserve("%s/\\s\\+$//e")
 " run flake8 on this file
-autocmd BufWritePost *.py
-     \ call Flake8()
+" autocmd BufWritePost *.py
+"      \ call Flake8()
