@@ -14,6 +14,7 @@ Plugin 'christoomey/vim-system-copy'
 Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'davidhalter/jedi-vim'
 Plugin 'hynek/vim-python-pep8-indent'
+Plugin 'junegunn/seoul256.vim'
 Plugin 'nanotech/jellybeans.vim'
 Plugin 'nvie/vim-flake8'
 Plugin 'pignacio/vim-yapf-format'
@@ -72,9 +73,11 @@ set backspace=2
 
 " color settings
 set t_Co=256
-colorscheme zenburn
-highlight UnderCursor ctermbg=193 ctermfg=8
+let g:seoul256_background = 236
+colorscheme seoul256
+highlight UnderCursor ctermbg=240
 autocmd CursorMoved * exe printf('match UnderCursor /\V\<%s\>/', escape(expand('<cword>'), '/\'))
+let g:airline_theme='zenburn'
 
 " airline stuff
 set laststatus=2
