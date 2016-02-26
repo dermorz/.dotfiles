@@ -122,8 +122,9 @@ endfunction
 map <leader>w :w<CR>
 map <leader>k :cprev<CR>
 map <leader>j :cnext<CR>
-vmap <C-i> !isort -sl -<CR>
+vmap <C-i> !isort -<CR>
 map <leader>, A,<ESC>
+vmap <C-y> :YapfFormat<CR>
 
 
 " some on_write triggers
