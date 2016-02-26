@@ -8,6 +8,7 @@
   default = matching
 [alias]
   co = checkout
+  ci = commit -v
 [merge]
   ff = false
 [pull]
