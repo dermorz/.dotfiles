@@ -92,7 +92,7 @@ map /  <Plug>(incsearch-forward)
 map ?  <Plug>(incsearch-backward)
 
 " format json with python
-command JSON %!python -m json.tool
+command! JSON %!python -m json.tool
 
 " python stuff
 autocmd BufNewFile,BufRead *.py
