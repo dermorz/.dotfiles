@@ -13,6 +13,7 @@ Plugin 'christoomey/vim-sort-motion'
 Plugin 'christoomey/vim-system-copy'
 Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'davidhalter/jedi-vim'
+Plugin 'haya14busa/incsearch.vim'
 Plugin 'hynek/vim-python-pep8-indent'
 Plugin 'junegunn/seoul256.vim'
 Plugin 'nanotech/jellybeans.vim'
@@ -85,6 +86,10 @@ set laststatus=2
 
 " configure sort-motion
 let g:sort_motion_flags = "ui"
+
+" incsearch mappings
+map /  <Plug>(incsearch-forward)
+map ?  <Plug>(incsearch-backward)
 
 " format json with python
 command JSON %!python -m json.tool
