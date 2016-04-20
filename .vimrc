@@ -131,7 +131,7 @@ endfunction
 map <leader>w :w<CR>
 map <leader>k :cprev<CR>
 map <leader>j :cnext<CR>
-vmap <C-i> !isort -<CR>
+vmap <C-i> !eingefuhrt<CR>
 map <leader>, A,<ESC>
 vmap <C-y> :YapfFormat<CR>
 map <leader>f :call Flake8()<CR>
