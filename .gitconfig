@@ -3,13 +3,14 @@
 #   name = Moritz Pein
 #   email = moritz.pein@gmail.com
 [include]
-  path = ~/.gitconfig.d/identity
+	path = ~/.gitconfig.d/identity
 [push]
-  default = matching
+	default = matching
 [alias]
-  co = checkout
-  ci = commit -v
+	co = checkout
+	ci = commit -S -v
+	m = merge -S
 [merge]
-  ff = false
+	ff = false
 [pull]
   rebase = true
