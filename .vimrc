@@ -106,7 +106,7 @@ autocmd BufNewFile,BufRead *.py
      \ set softtabstop=4 |
      \ set tabstop=4
 highlight OverLength ctermfg=darkgray
-autocmd BufNewFile,BufRead *.py,*.pyw,*.c,*.h match OverLength /\%101v.*/
+autocmd BufNewFile,BufRead,CursorMoved *.py,*.pyw,*.c,*.h match OverLength /\%101v.*/
 
 " bash stuff
 autocmd BufNewFile,BufRead *.sh
