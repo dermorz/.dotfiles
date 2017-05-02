@@ -131,14 +131,21 @@ endfunction
 map <leader>w :w<CR>
 map <leader>k :cprev<CR>
 map <leader>j :cnext<CR>
-vmap <C-i> !eingefuhrt<CR>
 map <leader>, A,<ESC>
-vmap <C-y> :YapfFormat<CR>
 map <leader>f :call Flake8()<CR>
+map <leader>p :CtrlPBuffer<CR>
+
+" visual mode mappings
+vmap <C-i> !eingefuhrt<CR>
+vmap <C-y> :YapfFormat<CR>
+
+" buffer navigation
+nmap H :bp<CR>
+nmap L :bn<CR>
 
 " some on_write triggers
 " remove trailing whitespace
-autocmd BufWritePost *
+autocmd BufWritePre *
      \ silent call Preserve("%s/\\s\\+$//e")
 " run flake8 on this file
 " autocmd BufWritePost *.py
