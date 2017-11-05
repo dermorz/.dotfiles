@@ -2,35 +2,56 @@ set encoding=utf-8
 " Vundle setup
 set nocompatible
 filetype off
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-
-" let Vundle manage itself
-Plugin 'VundleVim/Vundle.vim'
+call plug#begin('~/.vim/plugged')
 
 " my plugins
-Plugin 'christoomey/vim-sort-motion'
-Plugin 'christoomey/vim-system-copy'
-Plugin 'ctrlpvim/ctrlp.vim'
-Plugin 'davidhalter/jedi-vim'
-Plugin 'haya14busa/incsearch.vim'
-Plugin 'hynek/vim-python-pep8-indent'
-Plugin 'junegunn/seoul256.vim'
-Plugin 'nanotech/jellybeans.vim'
-Plugin 'nvie/vim-flake8'
-Plugin 'pignacio/vim-yapf-format'
-Plugin 'tpope/vim-commentary'
-Plugin 'tpope/vim-fugitive'
-Plugin 'tpope/vim-repeat'
-Plugin 'tpope/vim-surround'
-Plugin 'vim-airline/vim-airline'
-Plugin 'vim-airline/vim-airline-themes'
+Plug '/usr/local/opt/fzf' | Plug 'junegunn/fzf.vim'
+Plug 'airblade/vim-gitgutter'
+Plug 'christoomey/vim-sort-motion'
+Plug 'christoomey/vim-system-copy'
+Plug 'davidhalter/jedi-vim'
+Plug 'haya14busa/incsearch.vim'
+Plug 'hynek/vim-python-pep8-indent'
+Plug 'junegunn/seoul256.vim'
+Plug 'mileszs/ack.vim'
+Plug 'nanotech/jellybeans.vim'
+Plug 'nvie/vim-flake8'
+Plug 'pignacio/vim-yapf-format'
+Plug 'sheerun/vim-polyglot'
+Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-sleuth'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'w0rp/ale'
+Plug 'quramy/tsuquyomi'
 
-call vundle#end()
+call plug#end()
 filetype plugin indent on
 
 " general stuff
 let mapleader=" "
+
+let g:fzf_layout = { 'down': '~20%' }
+let g:fzf_buffers_jump = 1
+let g:fzf_colors =
+\ { 'fg':      ['fg', 'Normal'],
+  \ 'bg':      ['bg', 'Normal'],
+  \ 'hl':      ['fg', 'Comment'],
+  \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
+  \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
+  \ 'hl+':     ['fg', 'Statement'],
+  \ 'info':    ['fg', 'PreProc'],
+  \ 'prompt':  ['fg', 'Conditional'],
+  \ 'pointer': ['fg', 'Exception'],
+  \ 'marker':  ['fg', 'Keyword'],
+  \ 'spinner': ['fg', 'Label'],
+  \ 'header':  ['fg', 'Comment'] }
+
+nnoremap <silent> <C-P> :Files<CR>
+nnoremap <silent> <leader>p :Buffers<CR>
 
 " split navigation
 nnoremap <C-H> <C-W><C-H>
@@ -133,15 +154,24 @@ map <leader>k :cprev<CR>
 map <leader>j :cnext<CR>
 map <leader>, A,<ESC>
 map <leader>f :call Flake8()<CR>
-map <leader>p :CtrlPBuffer<CR>
+map <leader>J :%!python -m json.tool<CR>
 
 " visual mode mappings
 vmap <C-i> !eingefuhrt<CR>
 vmap <C-y> :YapfFormat<CR>
 
 " buffer navigation
+nmap <Left> :cprev<CR>
+nmap <Right> :cnext<CR>
 nmap H :bp<CR>
 nmap L :bn<CR>
+
+"This allows for change paste motion rp{motion}
+nmap <silent> rp :set opfunc=ChangePaste<CR>g@
+function! ChangePaste(type, ...)
+    silent exe "normal! `[v`]\"_c"
+    silent exe "normal! p"
+endfunction
 
 " some on_write triggers
 " remove trailing whitespace
@@ -150,3 +180,7 @@ autocmd BufWritePre *
 " run flake8 on this file
 " autocmd BufWritePost *.py
 "      \ call Flake8()
+" tell it to use an undo file
+set undofile
+" set a directory to store the undo history
+set undodir=~/.vimundo/
