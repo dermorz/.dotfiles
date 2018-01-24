@@ -6,7 +6,6 @@ call plug#begin('~/.vim/plugged')
 
 " my plugins
 Plug '/usr/local/opt/fzf' | Plug 'junegunn/fzf.vim'
-Plug 'airblade/vim-gitgutter'
 Plug 'christoomey/vim-sort-motion'
 Plug 'christoomey/vim-system-copy'
 Plug 'davidhalter/jedi-vim'
@@ -15,18 +14,17 @@ Plug 'hynek/vim-python-pep8-indent'
 Plug 'junegunn/seoul256.vim'
 Plug 'mileszs/ack.vim'
 Plug 'nanotech/jellybeans.vim'
-Plug 'nvie/vim-flake8'
-Plug 'pignacio/vim-yapf-format'
+Plug 'quramy/tsuquyomi'
 Plug 'sheerun/vim-polyglot'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-repeat'
-Plug 'tpope/vim-surround'
 Plug 'tpope/vim-sleuth'
+Plug 'tpope/vim-surround'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
+Plug 'vim-python/python-syntax'
 Plug 'w0rp/ale'
-Plug 'quramy/tsuquyomi'
 
 call plug#end()
 filetype plugin indent on
@@ -69,6 +67,8 @@ endfor
 " more flake8
 let g:flake8_show_in_gutter=1
 let g:flake8_show_in_file=1
+let g:ale_sign_column_always = 1
+let g:airline#extensions#ale#enabled = 1
 
 " jedi autocomplete options
 let g:jedi#popup_on_dot = 0
@@ -110,6 +110,11 @@ set laststatus=2
 
 " configure sort-motion
 let g:sort_motion_flags = "ui"
+
+" use ag on :Ack
+if executable('ag')
+  let g:ackprg = 'ag --vimgrep'
+endif
 
 " incsearch mappings
 map /  <Plug>(incsearch-forward)
@@ -153,7 +158,6 @@ map <leader>w :w<CR>
 map <leader>k :cprev<CR>
 map <leader>j :cnext<CR>
 map <leader>, A,<ESC>
-map <leader>f :call Flake8()<CR>
 map <leader>J :%!python -m json.tool<CR>
 
 " visual mode mappings
