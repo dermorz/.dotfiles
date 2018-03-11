@@ -12,9 +12,10 @@ Plug 'davidhalter/jedi-vim'
 Plug 'haya14busa/incsearch.vim'
 Plug 'hynek/vim-python-pep8-indent'
 Plug 'junegunn/seoul256.vim'
+Plug 'kana/vim-textobj-function'
+Plug 'kana/vim-textobj-indent'
+Plug 'kana/vim-textobj-user'
 Plug 'mileszs/ack.vim'
-Plug 'nanotech/jellybeans.vim'
-Plug 'quramy/tsuquyomi'
 Plug 'sheerun/vim-polyglot'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-fugitive'
@@ -51,24 +52,12 @@ let g:fzf_colors =
 nnoremap <silent> <C-P> :Files<CR>
 nnoremap <silent> <leader>p :Buffers<CR>
 
-" split navigation
-nnoremap <C-H> <C-W><C-H>
-nnoremap <C-J> <C-W><C-J>
-nnoremap <C-K> <C-W><C-K>
-nnoremap <C-L> <C-W><C-L>
-
 " unmap arrow keys to force myself to use HJKL
 for prefix in ['i', 'n', 'v']
   for key in ['<Down>', '<Left>', '<Right>', '<Up>']
     exe prefix . "noremap" . key . " <Nop>"
   endfor
 endfor
-
-" more flake8
-let g:flake8_show_in_gutter=1
-let g:flake8_show_in_file=1
-let g:ale_sign_column_always = 1
-let g:airline#extensions#ale#enabled = 1
 
 " jedi autocomplete options
 let g:jedi#popup_on_dot = 0
@@ -84,9 +73,9 @@ set diffopt+=vertical
 set nocompatible
 set hidden
 set hlsearch
-set cursorline
+"set cursorline
 set number
-set relativenumber
+"set relativenumber
 set ruler
 set splitbelow
 set splitright
@@ -97,12 +86,19 @@ set nofoldenable
 set pastetoggle=<F2>
 set backspace=2
 
+let g:ale_sign_column_always = 1
+nmap <silent> <C-k> <Plug>(ale_previous_wrap)
+nmap <silent> <C-j> <Plug>(ale_next_wrap)
+nmap <silent> <C-h> :cprev<CR>
+nmap <silent> <C-l> :cnext<CR>
+
 " color settings
 set t_Co=256
 let g:seoul256_background = 236
 colorscheme seoul256
 highlight UnderCursor ctermbg=240
-autocmd CursorMoved * exe printf('match UnderCursor /\V\<%s\>/', escape(expand('<cword>'), '/\'))
+setl updatetime=500
+autocmd CursorHold * exe printf('match UnderCursor /\V\<%s\>/', escape(expand('<cword>'), '/\'))
 let g:airline_theme='zenburn'
 
 " airline stuff
@@ -132,7 +128,7 @@ autocmd BufNewFile,BufRead *.py
      \ set softtabstop=4 |
      \ set tabstop=4
 highlight OverLength ctermfg=darkgray
-autocmd BufNewFile,BufRead,CursorMoved *.py,*.pyw,*.c,*.h match OverLength /\%101v.*/
+autocmd CursorHold *.py,*.pyw,*.c,*.h match OverLength /\%101v.*/
 
 " bash stuff
 autocmd BufNewFile,BufRead *.sh
@@ -165,8 +161,6 @@ vmap <C-i> !eingefuhrt<CR>
 vmap <C-y> :YapfFormat<CR>
 
 " buffer navigation
-nmap <Left> :cprev<CR>
-nmap <Right> :cnext<CR>
 nmap H :bp<CR>
 nmap L :bn<CR>
 
