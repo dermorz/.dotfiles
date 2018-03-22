@@ -5,7 +5,7 @@
 [include]
   path = ~/.gitconfig.d/identity
 [push]
-  default = matching
+  default = current
   followTags = true
 [alias]
   co = checkout
