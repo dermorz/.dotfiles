@@ -26,6 +26,7 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'vim-python/python-syntax'
 Plug 'w0rp/ale'
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 
 call plug#end()
 filetype plugin indent on
@@ -130,14 +131,15 @@ autocmd BufNewFile,BufRead *.py
 highlight OverLength ctermfg=darkgray
 autocmd CursorHold *.py,*.pyw,*.c,*.h match OverLength /\%101v.*/
 
-" bash stuff
-autocmd BufNewFile,BufRead *.sh
+autocmd BufNewFile,BufRead *.sh,*.yml
      \ set autoindent |
      \ set expandtab |
      \ set fileformat=unix |
      \ set shiftwidth=2 |
      \ set softtabstop=2 |
      \ set tabstop=2
+
+au BufNewFile,BufRead *.go setlocal noet ts=4 sw=4 sts=4
 
 " helper to preserve state on commands
 function! Preserve(command)
@@ -155,6 +157,7 @@ map <leader>k :cprev<CR>
 map <leader>j :cnext<CR>
 map <leader>, A,<ESC>
 map <leader>J :%!python -m json.tool<CR>
+map <leader>b oimport pdb; pdb.set_trace()<ESC>
 
 " visual mode mappings
 vmap <C-i> !eingefuhrt<CR>
