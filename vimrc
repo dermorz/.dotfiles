@@ -27,6 +27,7 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'vim-python/python-syntax'
 Plug 'w0rp/ale'
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+Plug 'Glench/Vim-Jinja2-Syntax'
 
 call plug#end()
 filetype plugin indent on
@@ -139,7 +140,7 @@ autocmd BufNewFile,BufRead *.sh,*.yml
      \ set softtabstop=2 |
      \ set tabstop=2
 
-au BufNewFile,BufRead *.go setlocal noet ts=4 sw=4 sts=4
+autocmd BufNewFile,BufRead *.go setlocal noet ts=4 sw=4 sts=4
 
 " helper to preserve state on commands
 function! Preserve(command)
@@ -176,7 +177,7 @@ endfunction
 
 " some on_write triggers
 " remove trailing whitespace
-autocmd BufWritePre *
+autocmd BufWritePre *.py,*.sh,*.yml
      \ silent call Preserve("%s/\\s\\+$//e")
 " run flake8 on this file
 " autocmd BufWritePost *.py
