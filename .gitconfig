@@ -4,6 +4,8 @@
 #   email = moritz.pein@gmail.com
 [include]
   path = ~/.gitconfig.d/identity
+[commit]
+  gpgSign = true
 [push]
   default = current
   followTags = true
