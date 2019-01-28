@@ -2,6 +2,7 @@
 # [user]
 #   name = Moritz Pein
 #   email = moritz.pein@gmail.com
+#   signingkey = AB123456
 [include]
   path = ~/.gitconfig.d/identity
 [commit]
