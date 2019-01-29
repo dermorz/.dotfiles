@@ -1,4 +1,4 @@
 .git
 *.pyc
-.vim/plugged
+vim/.vim/plugged
 .DS_Store

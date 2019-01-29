@@ -1,5 +1,4 @@
 set encoding=utf-8
-" Vundle setup
 set nocompatible
 filetype off
 call plug#begin('~/.vim/plugged')
