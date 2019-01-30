@@ -176,7 +176,7 @@ endfunction
 
 " some on_write triggers
 " remove trailing whitespace
-autocmd BufWritePre *.py,*.sh,*.yml
+autocmd BufWritePre *
      \ silent call Preserve("%s/\\s\\+$//e")
 " run flake8 on this file
 " autocmd BufWritePost *.py
