@@ -12,7 +12,10 @@ zplug: fzf
 	brew install zplug
 
 .PHONY: zsh
-zsh: fzf zplug
+zsh: fzf zplug .zsh
+
+.PHONY: .zsh
+.zsh:
 	$(STOW) zsh
 
 .PHONY: config
