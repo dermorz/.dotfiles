@@ -22,6 +22,8 @@ zplug "modules/git", from:prezto
 zplug "modules/python", from:prezto
 zplug "modules/syntax-highlighting", from:prezto
 
+zplug "skywind3000/z.lua"
+
 zplug "${HOME}/.zsettings", from:local, use:"*.zsh"
 
 if ! zplug check --verbose; then
