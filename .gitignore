@@ -1,4 +1,6 @@
 .git
 *.pyc
+local.zsh
 vim/.vim/plugged
+.netrwhist
 .DS_Store
