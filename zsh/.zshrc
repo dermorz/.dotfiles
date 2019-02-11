@@ -21,6 +21,7 @@ zplug "modules/archive", from:prezto
 zplug "modules/git", from:prezto
 zplug "modules/python", from:prezto
 zplug "modules/syntax-highlighting", from:prezto
+zplug "plugins/docker", from:oh-my-zsh
 
 zplug "skywind3000/z.lua"
 
