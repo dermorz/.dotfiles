@@ -1,7 +1,5 @@
 ack
 autoconf
-osx-cross/avr/avr-gcc
-osx-cross/avr/avr-gcc@7
 bash
 cmake
 clockworknet/cmc/cmc

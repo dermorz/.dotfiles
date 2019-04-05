@@ -29,9 +29,9 @@ install: brew brew-install
 
 .PHONY: brew
 brew:
-	/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+	/usr/bin/ruby -e "$$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 
 .PHONY: brew-install
 brew-install:
-	brew install $(< homebrew)
-	brew cask install $(< homebrew-cask)
+	brew install $$(< homebrew)
+	brew cask install $$(< homebrew-cask)
