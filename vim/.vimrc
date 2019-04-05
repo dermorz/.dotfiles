@@ -27,6 +27,7 @@ Plug 'vim-python/python-syntax'
 Plug 'w0rp/ale'
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 Plug 'Glench/Vim-Jinja2-Syntax'
+Plug 'ElmCast/elm-vim'
 
 call plug#end()
 filetype plugin indent on
@@ -86,6 +87,7 @@ set listchars=eol:¬,tab:»\ ,nbsp:·,trail:·,extends:→,precedes:←
 set nofoldenable
 set pastetoggle=<F2>
 set backspace=2
+set tabstop=4
 
 let g:ale_sign_column_always = 1
 nmap <silent> <C-k> <Plug>(ale_previous_wrap)
@@ -157,7 +159,8 @@ map <leader>k :cprev<CR>
 map <leader>j :cnext<CR>
 map <leader>, A,<ESC>
 map <leader>J :%!python -m json.tool<CR>
-map <leader>b oimport pdb; pdb.set_trace()<ESC>
+map <leader>f :Ack -w <cword><CR>
+map <leader>b O# TODO(moritz): REMOVE THIS!<CR>import pdb; pdb.set_trace()<ESC>
 
 " visual mode mappings
 vmap <C-i> !eingefuhrt<CR>

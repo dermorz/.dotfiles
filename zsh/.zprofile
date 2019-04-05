@@ -18,7 +18,10 @@ typeset -gU cdpath fpath mailpath path
 path=(
   $HOME/.bin
   /usr/local/opt/fzf/bin
+  /usr/local/opt/gettext/bin
   /usr/local/{bin,sbin}
+  $HOME/Library/Python/3.7/bin
+  $HOME/.linkerd2/bin
   $path
 )
 
