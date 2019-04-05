@@ -1,7 +1,7 @@
 STOW = stow -v
 
-.PHONY: install
-install: git config zsh vim
+.PHONY: link
+link: git config zsh vim
 
 .PHONY: zsh
 zsh:
@@ -23,3 +23,14 @@ vim: fzf
 .PHONY: fonts
 fonts:
 	find fonts \( -name "*.ttf" -o -name "*.otf" \) -exec cp -v {} ~/Library/Fonts \;
+
+.PHONY: install
+install: brew brew-install
+
+.PHONY: brew
+brew:
+	/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+
+.PHONY: brew-install
+brew-install:
+	brew install $(< homebrew)

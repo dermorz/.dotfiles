@@ -5,4 +5,5 @@ my dotfiles
 $ git clone git://github.com/moritzpein/.dotfiles.git`
 $ cd .dotfiles
 $ make install
+$ make config
 ```
