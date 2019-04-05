@@ -3,19 +3,8 @@ STOW = stow -v
 .PHONY: install
 install: git config zsh vim
 
-.PHONY: fzf
-fzf:
-	brew install fzf
-
-.PHONY: zplug
-zplug: fzf
-	brew install zplug
-
 .PHONY: zsh
-zsh: fzf zplug .zsh
-
-.PHONY: .zsh
-.zsh:
+zsh:
 	$(STOW) zsh
 
 .PHONY: config
