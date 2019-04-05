@@ -34,3 +34,4 @@ brew:
 .PHONY: brew-install
 brew-install:
 	brew install $(< homebrew)
+	brew cask install $(< homebrew-cask)
