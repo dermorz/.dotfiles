@@ -16,7 +16,7 @@ git:
 	$(STOW) git
 
 .PHONY: vim
-vim: fzf
+vim:
 	$(STOW) vim
 	vim +PlugInstall +qall
 
