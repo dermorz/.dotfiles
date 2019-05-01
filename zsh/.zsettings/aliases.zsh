@@ -4,3 +4,4 @@ alias kl='kubelogin --username moritz.pein --password $(pass ldap | head -1)'
 alias vim=nvim
 alias e=nvim
 alias gl="git log --graph --pretty='%C(auto)%h%Creset -%C(auto)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset'"
+alias ppass="PASSWORD_STORE_DIR=~/.ppass pass"

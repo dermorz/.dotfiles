@@ -23,3 +23,15 @@ commit () {
 kubeclear () {
   kubectl delete deploy,statefulset,configmap,secret,svc,etcd,jobs,po,pvc --all
 }
+
+j () {
+  slug="(git rev-parse --abbrev-ref HEAD | sed 's/.*\/\([A-Z]*-[0-9]*\).*/\1/')"
+  open "$JIRA_URL/browse/$slug"
+}
+
+xdump () {
+  for dump in "$@"
+  do
+    gpg -d $dump 2>/dev/null | tar xz - "*.request.json" "*.response.json" && rm -f $dump
+  done
+}
