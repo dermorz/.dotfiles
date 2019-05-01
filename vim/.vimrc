@@ -11,6 +11,7 @@ Plug 'davidhalter/jedi-vim'
 Plug 'haya14busa/incsearch.vim'
 Plug 'hynek/vim-python-pep8-indent'
 Plug 'junegunn/seoul256.vim'
+Plug 'junegunn/vim-easy-align'
 Plug 'kana/vim-textobj-function'
 Plug 'kana/vim-textobj-indent'
 Plug 'kana/vim-textobj-user'
@@ -165,6 +166,9 @@ map <leader>b O# TODO(moritz): REMOVE THIS!<CR>import pdb; pdb.set_trace()<ESC>
 " visual mode mappings
 vmap <C-i> !eingefuhrt<CR>
 vmap <C-y> :YapfFormat<CR>
+
+" EasyAlign
+nmap ga <Plug>(EasyAlign)
 
 " buffer navigation
 nmap H :bp<CR>
