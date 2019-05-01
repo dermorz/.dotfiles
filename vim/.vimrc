@@ -123,6 +123,9 @@ map ?  <Plug>(incsearch-backward)
 " format json with python
 command! JSON %!python -m json.tool
 
+" preview markdown as pdf
+command! MD !pandoc -V geometry:margin=0.75in -V papersize=a4 % -o /tmp/preview.pdf && open /tmp/preview.pdf && rm -f /tmp/preview.pdf
+
 " python stuff
 autocmd BufNewFile,BufRead *.py
      \ set autoindent |
