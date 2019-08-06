@@ -11,17 +11,8 @@ delete-merged-branches () {
   done
 }
 
-commit_prefix () {
-  SLUG=$(git rev-parse --abbrev-ref HEAD | sed 's/.*\/\([[:upper:]]*-[[:digit:]]*\).*/\1/')
-  echo "$1[$SLUG]:"
-}
-
-commit () {
-  git commit -v -e -m "$(commit_prefix $1) $2"
-}
-
 kubeclear () {
-  kubectl delete deploy,statefulset,configmap,secret,svc,etcd,jobs,po,pvc --all
+  kubectl delete deploy,statefulset,configmap,svc,etcd,jobs,po,pvc --all
 }
 
 j () {
@@ -29,9 +20,40 @@ j () {
   open "$JIRA_URL/browse/$slug"
 }
 
-xdump () {
-  for dump in "$@"
-  do
-    gpg -d $dump 2>/dev/null | tar xz - "*.request.json" "*.response.json" && rm -f $dump
-  done
+kexec () {
+  local pod=$(kubectl get pods | fzf | awk '{print $1}')
+  local containers=$(kubectl get pods "${pod}" -o jsonpath='{.spec.containers[*].name}')
+  local container=${containers}
+  if [[ $containers =~ ' ' ]]; then
+    container=$(echo "${containers}" | tr ' ' '\n' | fzf)
+  fi
+  echo "${pod}" - "${container}"
+  kubectl exec -it "${pod}" -c "${container}" -- "${@}"
+}
+
+klogs () {
+  local pod=$(kubectl get pods | fzf | awk '{print $1}')
+  local containers=$(kubectl get pods "${pod}" -o jsonpath='{.spec.containers[*].name}')
+  local container=${containers}
+  if [[ $containers =~ ' ' ]]; then
+    container=$(echo "${containers}" | tr ' ' '\n' | fzf)
+  fi
+  echo "${pod}" - "${container}"
+  kubectl logs "${@}" "${pod}" -c "${container}"
+}
+
+klogsf () {
+  kli -f --tail=10
+}
+
+kdesc () {
+  local typ=${1:-"pods"}
+  local item=$(kubectl get "${typ}" | fzf | awk '{print $1}')
+  kubectl describe "${typ}" "${item}"
+}
+
+kns () {
+  local ns=$(kubectl get namespace | fzf | awk '{print $1}')
+  local current=$(kubectl config current-context)
+  kubectl config set-context "${current}" --namespace="${ns}"
 }
