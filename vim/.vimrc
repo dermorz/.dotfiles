@@ -16,7 +16,6 @@ Plug 'kana/vim-textobj-function'
 Plug 'kana/vim-textobj-indent'
 Plug 'kana/vim-textobj-user'
 Plug 'mileszs/ack.vim'
-Plug 'sheerun/vim-polyglot'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-repeat'
@@ -29,6 +28,7 @@ Plug 'w0rp/ale'
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 Plug 'Glench/Vim-Jinja2-Syntax'
 Plug 'ElmCast/elm-vim'
+Plug 'sheerun/vim-polyglot'
 
 call plug#end()
 filetype plugin indent on
@@ -52,7 +52,15 @@ let g:fzf_colors =
   \ 'spinner': ['fg', 'Label'],
   \ 'header':  ['fg', 'Comment'] }
 
+command! -bang -nargs=* Rg
+  \ call fzf#vim#grep(
+  \   'rg --column --line-number --hidden --ignore-case --no-heading --color=always '.shellescape(<q-args>), 1,
+  \   <bang>0 ? fzf#vim#with_preview({'options': '--delimiter : --nth 4..'}, 'up:60%')
+  \           : fzf#vim#with_preview({'options': '--delimiter : --nth 4..'}, 'right:50%:hidden', '?'),
+  \   <bang>0)
+
 nnoremap <silent> <C-P> :Files<CR>
+nnoremap <silent> <C-G> :Rg<CR>
 nnoremap <silent> <leader>p :Buffers<CR>
 
 " unmap arrow keys to force myself to use HJKL
@@ -65,6 +73,9 @@ endfor
 " jedi autocomplete options
 let g:jedi#popup_on_dot = 0
 let g:jedi#show_call_signatures = "0"
+
+" vim-elm instead of elm in polyglot
+let g:polyglot_disabled = ['elm']
 
 " ctrlP
 set wildignore+=*.pyc,*.swp,*.swo
@@ -172,10 +183,15 @@ vmap <C-y> :YapfFormat<CR>
 
 " EasyAlign
 nmap ga <Plug>(EasyAlign)
+nmap <leader>t vip:EasyAlign *\|<CR>
 
 " buffer navigation
 nmap H :bp<CR>
 nmap L :bn<CR>
+
+" shell in buffer
+map <leader>z :vs term://zsh<CR>
+tnoremap <Esc><Esc> <C-\><C-n>
 
 "This allows for change paste motion rp{motion}
 nmap <silent> rp :set opfunc=ChangePaste<CR>g@
