@@ -7,28 +7,23 @@ call plug#begin('~/.vim/plugged')
 Plug '/usr/local/opt/fzf' | Plug 'junegunn/fzf.vim'
 Plug 'christoomey/vim-sort-motion'
 Plug 'christoomey/vim-system-copy'
-Plug 'davidhalter/jedi-vim'
 Plug 'haya14busa/incsearch.vim'
-Plug 'hynek/vim-python-pep8-indent'
 Plug 'junegunn/seoul256.vim'
 Plug 'junegunn/vim-easy-align'
 Plug 'kana/vim-textobj-function'
 Plug 'kana/vim-textobj-indent'
 Plug 'kana/vim-textobj-user'
-Plug 'mileszs/ack.vim'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-sleuth'
 Plug 'tpope/vim-surround'
+Plug 'Vimjas/vim-python-pep8-indent'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-Plug 'vim-python/python-syntax'
-Plug 'w0rp/ale'
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
-Plug 'Glench/Vim-Jinja2-Syntax'
 Plug 'ElmCast/elm-vim'
-Plug 'sheerun/vim-polyglot'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 call plug#end()
 filetype plugin indent on
@@ -70,13 +65,6 @@ for prefix in ['i', 'n', 'v']
   endfor
 endfor
 
-" jedi autocomplete options
-let g:jedi#popup_on_dot = 0
-let g:jedi#show_call_signatures = "0"
-
-" vim-elm instead of elm in polyglot
-let g:polyglot_disabled = ['elm']
-
 " ctrlP
 set wildignore+=*.pyc,*.swp,*.swo
 
@@ -87,6 +75,11 @@ set diffopt+=vertical
 set nocompatible
 set hidden
 set hlsearch
+set nobackup
+set nowritebackup
+set cmdheight=2
+set updatetime=300
+set signcolumn=yes
 "set cursorline
 set number
 "set relativenumber
@@ -101,9 +94,6 @@ set pastetoggle=<F2>
 set backspace=2
 set tabstop=4
 
-let g:ale_sign_column_always = 1
-nmap <silent> <C-k> <Plug>(ale_previous_wrap)
-nmap <silent> <C-j> <Plug>(ale_next_wrap)
 nmap <silent> <C-h> :cprev<CR>
 nmap <silent> <C-l> :cnext<CR>
 
@@ -111,9 +101,6 @@ nmap <silent> <C-l> :cnext<CR>
 set t_Co=256
 let g:seoul256_background = 236
 colorscheme seoul256
-highlight UnderCursor ctermbg=240
-setl updatetime=500
-autocmd CursorHold * exe printf('match UnderCursor /\V\<%s\>/', escape(expand('<cword>'), '/\'))
 let g:airline_theme='zenburn'
 
 " airline stuff
@@ -126,6 +113,24 @@ let g:sort_motion_flags = "ui"
 if executable('ag')
   let g:ackprg = 'ag --vimgrep'
 endif
+
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+
+autocmd CursorHold * silent call CocActionAsync('highlight')
 
 " incsearch mappings
 map /  <Plug>(incsearch-forward)

@@ -1,0 +1,11 @@
+{
+  "python.jediEnabled": false,
+  "python.linting.pylintEnabled": false,
+  "python.linting.pylamaEnabled": false,
+  "python.linting.flake8Enabled": true,
+  "python.linting.flake8Path": "flake8",
+  "python.autoComplete.showAdvancedMembers": false,
+  "python.analysis.disabled": [
+    "inherit-non-class"
+  ]
+}
