@@ -57,3 +57,8 @@ kns () {
   local current=$(kubectl config current-context)
   kubectl config set-context "${current}" --namespace="${ns}"
 }
+
+pw () {
+  local entry=$(pass | fzf | awk '{print $2}')
+  pass -c "${entry}"
+}
