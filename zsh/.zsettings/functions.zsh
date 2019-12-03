@@ -60,5 +60,26 @@ kns () {
 
 pw () {
   local entry=$(pass | fzf | awk '{print $2}')
-  pass -c "${entry}"
+  [ -z "$entry" ] || pass -c "${entry}"
+}
+
+ppw () {
+  local entry=$(ppass | fzf | awk '{print $2}')
+  [ -z "$entry" ] || ppass -c "${entry}"
+}
+
+1p () {
+  local subdomain=${1:-"finleapconnect"}
+  op list vaults &> /dev/null
+  if [ "$?" -ne "0" ]
+  then
+    eval $(op signin "${subdomain}")
+  fi
+  local entry=$(op list items | jq -r '.[] | [.uuid, .overview.title] | join(":")' | fzf | cut -d':' -f1)
+  local item=$(op get item $entry)
+  echo $item | jq -rj '.details.fields[] | select(.type == "P") | .value' | pbcopy
+  echo -n "Username: "
+  echo $item | jq -r '.details.fields[] | select(.type == "T") | .value'
+  echo "Copied password to clipboard. Will clear after 30 seconds."
+  screen -d -m bash -c "sleep 30s && echo -n '' | pbcopy"
 }
