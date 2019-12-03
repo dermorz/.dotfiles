@@ -153,7 +153,7 @@ autocmd BufNewFile,BufRead *.py
 highlight OverLength ctermfg=darkgray
 autocmd CursorHold *.py,*.pyw,*.c,*.h match OverLength /\%101v.*/
 
-autocmd BufNewFile,BufRead *.sh,*.yml
+autocmd BufNewFile,BufRead *.sh,*.yml,*.yaml
      \ set autoindent |
      \ set expandtab |
      \ set fileformat=unix |
