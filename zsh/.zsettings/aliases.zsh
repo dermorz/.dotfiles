@@ -21,5 +21,5 @@ alias klf='kubectl logs -f --tail=10'
 alias kpf='kubectl port-forward'
 alias kx='kubectl exec -it'
 
-alias klo='kubelogin --username moritz.pein --password $(pass figo-ldap | head -1)'
+alias klo='kubelogin --username moritz.bracht --password $(pass figo-ldap | head -1)'
 alias klop='klo --prod'
