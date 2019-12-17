@@ -162,6 +162,10 @@ autocmd BufNewFile,BufRead *.sh,*.yml,*.yaml
      \ set tabstop=2
 
 autocmd BufNewFile,BufRead *.go setlocal noet ts=4 sw=4 sts=4
+let g:go_metalinter_command = "golangci-lint run"
+let g:go_metalinter_autosave = 1
+let g:go_metalinter_enabled = ['govet', 'golint', 'errcheck', 'structcheck']
+
 
 " helper to preserve state on commands
 function! Preserve(command)
