@@ -24,6 +24,7 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 Plug 'ElmCast/elm-vim'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'vimwiki/vimwiki'
 
 call plug#end()
 filetype plugin indent on
@@ -234,3 +235,14 @@ autocmd BufWritePre *
 set undofile
 " set a directory to store the undo history
 set undodir=~/.vimundo/
+
+"vimwiki
+let brain = {}
+let brain.path = '~/Workspace/private/brain/'
+let brain.syntax = 'markdown'
+let brain.ext = '.md'
+let brain.index = 'README'
+let brain.nested_syntaxes = {'python': 'python', 'go': 'go'}
+
+let g:vimwiki_list = [brain]
+let g:vimwiki_global_ext = 0
