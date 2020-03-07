@@ -7,5 +7,10 @@
   "python.autoComplete.showAdvancedMembers": false,
   "python.analysis.disabled": [
     "inherit-non-class"
-  ]
+  ],
+  "go.goplsOptions": {
+    "completeUnimported": true,
+    "staticcheck": true
+  }
+
 }

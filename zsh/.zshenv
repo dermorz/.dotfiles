@@ -17,3 +17,6 @@ export NVM_DIR="$HOME/.nvm"
 
 export ANSIBLE_VAULT_PASSWORD_FILE=~/vault_pass.txt
 export ANSIBLE_SCP_IF_SSH=true
+
+export GOPATH="$HOME/go"
+export GOBIN="$GOPATH/bin"
