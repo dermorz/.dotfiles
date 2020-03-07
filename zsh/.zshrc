@@ -26,6 +26,7 @@ zplug "modules/syntax-highlighting", from:prezto
 zplug "plugins/docker", from:oh-my-zsh
 
 zplug "skywind3000/z.lua"
+zplug "lukechilds/zsh-nvm"
 
 zplug "${HOME}/.zsettings", from:local, use:"*.zsh"
 

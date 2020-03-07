@@ -1,7 +1,7 @@
 # put this in ~/gitconfig.d/identity
 # [user]
-#   name = Moritz Pein
-#   email = moritz.pein@example.org
+#   name = Moritz Bracht
+#   email = moritz.bracht@example.org
 #   signingkey = AB123456
 [include]
   path = ~/.gitconfig.d/identity
