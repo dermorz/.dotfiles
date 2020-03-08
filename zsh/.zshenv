@@ -7,5 +7,5 @@ fi
 export NVM_DIR="$HOME/.nvm"
 export NVM_LAZY_LOAD=true
 
-export GOPATH="$HOME/go"
+export GOPATH="$HOME/code/go"
 export GOBIN="$GOPATH/bin"
