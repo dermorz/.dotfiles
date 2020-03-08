@@ -11,14 +11,17 @@ fi
 # Paths
 # Ensure path arrays do not contain duplicates.
 typeset -gU cdpath fpath mailpath path
-
-# Set the list of directories that Zsh searches for programs.
 path=(
   $HOME/{,.}bin
   $HOME/.local/bin
   /usr/local/{,s}bin
   $path
 )
+cdpath=(
+  $HOME/go
+)
+
+
 
 export LESS='-F -g -i -M -R -S -w -X -z-4'
 if (( $#commands[(i)lesspipe(|.sh)] )); then
