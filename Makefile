@@ -1,7 +1,7 @@
 STOW = stow -v
 
 .PHONY: link
-link: git zsh vim config
+link: git zsh config vim
 
 .PHONY: zplug
 zplug:
