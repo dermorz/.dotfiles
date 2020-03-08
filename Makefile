@@ -22,4 +22,4 @@ git:
 .PHONY: vim
 vim:
 	$(STOW) vim
-	vim +PlugInstall +qall
+	nvim +PlugInstall +qall
