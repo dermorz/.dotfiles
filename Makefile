@@ -3,8 +3,12 @@ STOW = stow -v
 .PHONY: link
 link: git zsh vim
 
+.PHONY: zplug
+zplug:
+	-[ ! -d ~/.zplug ] && git clone https://github.com/zplug/zplug.git ~/.zplug
+
 .PHONY: zsh
-zsh:
+zsh: zplug
 	$(STOW) zsh
 
 .PHONY: config
