@@ -23,6 +23,7 @@ git:
 vim:
 	$(STOW) vim
 	nvim +PlugInstall +qall
+	nvim +"CocInstall -sync coc-go coc-json coc-python coc-spell-checker coc-texlab coc-vimlsp coc-yaml" +q
 
 .PHONY: x
 x:
