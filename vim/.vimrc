@@ -201,6 +201,7 @@ map <leader>J :%!python -m json.tool<CR>
 map <leader>f :Ack -w <cword><CR>
 nmap <leader>a <Plug>(coc-codeaction-selected)
 vmap <leader>a <Plug>(coc-codeaction-selected)
+nmap <leader>rn <Plug>(coc-rename)
 map <leader>b O# TODO(moritz): REMOVE THIS!<CR>import pdb; pdb.set_trace()<ESC>
 
 " visual mode mappings
