@@ -178,8 +178,12 @@ let g:go_metalinter_autosave = 0
 let g:go_metalinter_enabled = ['govet', 'golint', 'errcheck', 'structcheck']
 let g:go_metalinter_autosave_enabled = ['govet', 'golint']
 let g:go_addtags_transform = "snakecase"
-let g:go_def_mode = "godef"
+let g:go_def_mode = "gopls"
+let g:go_referrers_mode = "gopls"
+let g:go_info_mode = "gopls"
 let g:go_def_mapping_enabled = 0
+let g:go_doc_popup_window = 1
+
 
 
 " helper to preserve state on commands
@@ -202,6 +206,7 @@ map <leader>f :Ack -w <cword><CR>
 nmap <leader>a <Plug>(coc-codeaction-selected)
 vmap <leader>a <Plug>(coc-codeaction-selected)
 nmap <leader>rn <Plug>(coc-rename)
+nnoremap <silent> K :call <SID>show_documentation()<CR>
 map <leader>b O# TODO(moritz): REMOVE THIS!<CR>import pdb; pdb.set_trace()<ESC>
 
 " visual mode mappings
