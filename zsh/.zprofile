@@ -16,9 +16,11 @@ path=(
   $HOME/.local/bin
   /usr/local/{,s}bin
   $path
+  $GOBIN
 )
 cdpath=(
   $HOME/go
+  $HOME/Code
 )
 
 

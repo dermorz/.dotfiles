@@ -246,11 +246,11 @@ set undodir=~/.vimundo/
 
 "vimwiki
 let brain = {}
-let brain.path = '~/Workspace/private/brain/'
+let brain.path = '~/vimwiki/brain/'
 let brain.syntax = 'markdown'
 let brain.ext = '.md'
 let brain.index = 'README'
-let brain.nested_syntaxes = {'python': 'python', 'go': 'go'}
+let brain.nested_syntaxes = {'python': 'python', 'go': 'go', 'sql': 'sql', 'sh': 'sh'}
 
 let g:vimwiki_list = [brain]
 let g:vimwiki_global_ext = 0
