@@ -28,3 +28,12 @@ vim:
 .PHONY: x
 x:
 	$(STOW) x
+
+.PHONY: brew
+brew:
+	/usr/bin/ruby -e "$$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+
+.PHONY: brew-install
+brew-install:
+	brew install $$(< homebrew)
+	brew cask install $$(< homebrew-cask)
