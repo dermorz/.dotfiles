@@ -1,10 +1,14 @@
 STOW = stow -v
 
 .PHONY: link
-link: git zsh vim
+link: git zsh config vim x
+
+.PHONY: zplug
+zplug:
+	-[ ! -d ~/.zplug ] && git clone https://github.com/zplug/zplug.git ~/.zplug
 
 .PHONY: zsh
-zsh:
+zsh: zplug
 	$(STOW) zsh
 
 .PHONY: config
@@ -18,14 +22,12 @@ git:
 .PHONY: vim
 vim:
 	$(STOW) vim
-	vim +PlugInstall +qall
+	nvim +PlugInstall +qall
+	nvim +"CocInstall -sync coc-go coc-json coc-python coc-spell-checker coc-texlab coc-vimlsp coc-yaml" +q
 
-.PHONY: fonts
-fonts:
-	find fonts \( -name "*.ttf" -o -name "*.otf" \) -exec cp -v {} ~/Library/Fonts \;
-
-.PHONY: install
-install: brew brew-install
+.PHONY: x
+x:
+	$(STOW) x
 
 .PHONY: brew
 brew:

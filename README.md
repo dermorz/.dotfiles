@@ -2,8 +2,7 @@ my dotfiles
 ===========
 
 ```sh
-$ git clone git://github.com/moritzpein/.dotfiles.git`
+$ git clone https://github.com/dermorz/.dotfiles.git`
 $ cd .dotfiles
-$ make install
-$ make config
+$ make
 ```

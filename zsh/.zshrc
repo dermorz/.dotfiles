@@ -1,4 +1,4 @@
-export ZPLUG_HOME=/usr/local/opt/zplug
+export ZPLUG_HOME=~/.zplug
 source $ZPLUG_HOME/init.zsh
 
 zstyle ':prezto:*:*' case-sensitive 'yes'
@@ -8,6 +8,10 @@ zstyle ':prezto:module:prompt' theme 'sorin'
 zstyle ':prezto:module:git:alias' skip 'yes'
 zstyle ':prezto:module:utility' correct 'no'
 zstyle ':prezto:module:utility' safe-ops 'no'
+zstyle ':prezto:module:utility:ls'  color 'yes'
+zstyle ':prezto:module:utility:diff'  color 'yes'
+zstyle ':prezto:module:utility:wdiff' color 'yes'
+zstyle ':prezto:module:utility:make'  color 'yes'
 
 zplug "modules/environment", from:prezto
 zplug "modules/terminal", from:prezto
@@ -26,6 +30,7 @@ zplug "modules/syntax-highlighting", from:prezto
 zplug "plugins/docker", from:oh-my-zsh
 
 zplug "skywind3000/z.lua"
+zplug "lukechilds/zsh-nvm"
 
 zplug "${HOME}/.zsettings", from:local, use:"*.zsh"
 
