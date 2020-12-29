@@ -5,7 +5,7 @@ tunnel-anything () {
 }
 
 delete-merged-branches () {
-  for branch in $(git branch --merged | grep -v -E 'master|develop')
+  for branch in $(git branch --merged | grep -v -E 'main|master|develop')
   do
     git branch -d $branch
   done
