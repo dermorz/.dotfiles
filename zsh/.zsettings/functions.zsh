@@ -74,3 +74,15 @@ rds () {
     --password $PASSWORD \
     radio
 }
+
+summary () {
+for tag in $(timew tags | grep BACK | cut -d' ' -f1)
+  do
+    printf "${tag}:\t $(task ${tag}|tail -2| tr -d '[:space:]')\n"
+  done
+}
+
+git-personal () {
+  git config user.signingkey B42002F0B8E5DE23
+  git config user.email mail@morz.me
+}
