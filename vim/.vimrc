@@ -22,15 +22,21 @@ Plug 'Vimjas/vim-python-pep8-indent'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+Plug 'vim-test/vim-test'
+Plug 'sebdah/vim-delve'
 Plug 'ElmCast/elm-vim'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'vimwiki/vimwiki'
+Plug 'hashivim/vim-terraform'
+Plug 'lervag/vimtex'
+Plug 'xuhdev/vim-latex-live-preview'
 
 call plug#end()
 filetype plugin indent on
 
 " general stuff
 let mapleader=" "
+let maplocalleader=";"
 
 let g:fzf_layout = { 'down': '~20%' }
 let g:fzf_buffers_jump = 1
@@ -47,6 +53,13 @@ let g:fzf_colors =
   \ 'marker':  ['fg', 'Keyword'],
   \ 'spinner': ['fg', 'Label'],
   \ 'header':  ['fg', 'Comment'] }
+
+" terraform
+let g:terraform_align=1
+let g:terraform_fmt_on_save=1
+
+" ultisnips
+let g:UltiSnipsExpandTrigger = "<nop>"
 
 command! -bang -nargs=* Rg
   \ call fzf#vim#grep(
@@ -116,15 +129,17 @@ if executable('ag')
 endif
 
 inoremap <silent><expr> <TAB>
-      \ pumvisible() ? "\<C-n>" :
+      \ pumvisible() ? coc#_select_confirm() :
+      \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
       \ <SID>check_back_space() ? "\<TAB>" :
       \ coc#refresh()
-inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 
 function! s:check_back_space() abort
   let col = col('.') - 1
   return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
+
+let g:coc_snippet_next = '<tab>'
 
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
@@ -173,7 +188,7 @@ let g:go_highlight_structs = 1
 let g:go_highlight_types = 1
 let g:go_auto_sameids = 0
 let g:go_fmt_command = "goimports"
-let g:go_metalinter_command = "golangci-lint run"
+let g:go_metalinter_command = "golangci-lint run -e 'composite literal uses unkeyed fields'"
 let g:go_metalinter_autosave = 0
 let g:go_metalinter_enabled = ['govet', 'golint', 'errcheck', 'structcheck']
 let g:go_metalinter_autosave_enabled = ['govet', 'golint']
@@ -184,7 +199,8 @@ let g:go_info_mode = "gopls"
 let g:go_def_mapping_enabled = 0
 let g:go_doc_popup_window = 1
 
-
+autocmd Filetype tex setl updatetime=1
+let g:livepreview_previewer = 'open -a Preview'
 
 " helper to preserve state on commands
 function! Preserve(command)
@@ -208,6 +224,10 @@ vmap <leader>a <Plug>(coc-codeaction-selected)
 nmap <leader>rn <Plug>(coc-rename)
 nnoremap <silent> K :call <SID>show_documentation()<CR>
 map <leader>b O# TODO(moritz): REMOVE THIS!<CR>import pdb; pdb.set_trace()<ESC>
+" `ginkgo watch` in horizontal split
+nmap <leader>gw :cd %:p:h<CR>:15sp term://ginkgo watch -tags unit,integration<CR>:cd -<CR>
+nmap <leader>gu :cd %:p:h<CR>:15sp term://ginkgo watch -tags unit<CR>:cd -<CR>
+
 
 " visual mode mappings
 vmap <C-i> !eingefuhrt<CR>
@@ -254,3 +274,13 @@ let brain.nested_syntaxes = {'python': 'python', 'go': 'go', 'sql': 'sql', 'sh':
 
 let g:vimwiki_list = [brain]
 let g:vimwiki_global_ext = 0
+
+let g:vimtex_compiler_latexmk = {
+      \ 'executable' : 'latexmk',
+      \ 'options' : [
+      \   '-xelatex',
+      \   '-file-line-error',
+      \   '-synctex=1',
+      \   '-interaction=nonstopmode',
+      \ ],
+      \}
