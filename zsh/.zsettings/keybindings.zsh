@@ -9,10 +9,14 @@ fzf-down() {
 
 gb() {
   is_in_git_repo || return
-  git branch -a --color=always | grep -v '/HEAD\s' | sort |
-  fzf-down --ansi --multi --tac |
-  sed 's/^..//' | cut -d' ' -f1 |
-  sed 's#^remotes/##'
+  git branch -a --color=always \
+    | grep -v '/HEAD\s' \
+    | sort \
+    | fzf-down --ansi --multi --tac \
+    | sed 's/^..//' \
+    | cut -d' ' -f1 \
+    | sed 's#^remotes/origin/##' \
+    | grep -v origin
 }
 
 join-lines() {
