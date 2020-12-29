@@ -9,3 +9,5 @@ export NVM_LAZY_LOAD=true
 
 export GOPATH="$HOME/go"
 export GOBIN="$GOPATH/bin"
+
+export TEST_DB_HOST=localhost
