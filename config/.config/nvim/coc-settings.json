@@ -1,4 +1,16 @@
 {
+  "languageserver":{
+      "terraform": {
+      "command": "terraform-ls",
+      "args": ["serve"],
+      "filetypes": [
+        "terraform",
+        "tf"
+      ],
+      "initializationOptions": {},
+      "settings": {}
+    }
+  },
   "python.jediEnabled": false,
   "python.linting.pylintEnabled": false,
   "python.linting.pylamaEnabled": false,
@@ -9,8 +21,17 @@
     "inherit-non-class"
   ],
   "go.goplsOptions": {
+    "env": {
+        "GOFLAGS": "-tags=test,unit,integration,contract"
+    },
     "completeUnimported": true,
-    "staticcheck": true
+    "staticcheck": true,
+    "diagnostics": true,
+    "analyses": {
+      "unreachable": true,
+      "composite": false,
+      "simplifycompositelit": true
+    }
   },
   "cSpell.language": "en,de",
   "cSpellExt.enableDictionaries": ["german"],
