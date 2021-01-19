@@ -18,13 +18,8 @@ kns () {
 }
 
 pw () {
-  local entry=$(pass | fzf | awk '{print $2}')
-  [ -z "$entry" ] || pass -c "${entry}"
-}
-
-ppw () {
-  local entry=$(ppass | fzf | awk '{print $2}')
-  [ -z "$entry" ] || ppass -c "${entry}"
+  local entry=$(gopass ls -f -s | fzf)
+  [ -z "$entry" ] || gopass show -c "${entry}"
 }
 
 aws-login () {
