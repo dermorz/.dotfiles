@@ -23,16 +23,22 @@ pw () {
 }
 
 aws-login () {
-  AWS_PROFILE=$1
+  export AWS_PROFILE=$1
   aws sso login --profile $1
+  yawsso -p $1
 }
 
 get-aws-db-host () {
   AWS_PROFILE=$1
+  CLUSTER_IDENTIFIER=$AWS_PROFILE-database
+  if [ "$AWS_PROFILE" = "prod" ]
+  then
+    CLUSTER_IDENTIFIER=prod-stations-cluster
+  fi
   aws rds describe-db-cluster-endpoints \
     --profile $AWS_PROFILE \
     --region eu-central-1 \
-    --db-cluster-identifier $AWS_PROFILE-database \
+    --db-cluster-identifier $CLUSTER_IDENTIFIER \
     --query 'DBClusterEndpoints[?EndpointType==`WRITER`].Endpoint' \
     --output text
 }
@@ -50,12 +56,10 @@ get-mysql-rds-master-pw () {
   ensure-1password-login || return 1
   OPW_RDS_MASTER_PW_ITEM="$(op list items \
     | jq -r '.[] | [.uuid, .overview.title] | join(":")' \
-    | grep MySQL \
+    | grep "MySQL Radio RDS Admin User" \
     | cut -d':' -f1)"
   op get item $OPW_RDS_MASTER_PW_ITEM \
-    | jq -r '.details.fields | .[] | [.type, .value] | join(":")' \
-    | grep "P:" \
-    | cut -d':' -f2
+    | jq -r '.details.fields | .[] | select(.type=="P") | .value'
 }
 
 rds () {
