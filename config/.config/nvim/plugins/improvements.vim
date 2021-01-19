@@ -1,0 +1,7 @@
+Plug 'junegunn/vim-easy-align'
+Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-sleuth'
+Plug 'tpope/vim-surround'
+Plug 'christoomey/vim-sort-motion'
+Plug 'christoomey/vim-system-copy'

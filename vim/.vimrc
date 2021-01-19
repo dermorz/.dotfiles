@@ -1,43 +1,7 @@
-set encoding=utf-8
-set nocompatible
 filetype off
-call plug#begin('~/.vim/plugged')
-
-" my plugins
-Plug '/usr/local/opt/fzf' | Plug 'junegunn/fzf.vim'
-Plug 'christoomey/vim-sort-motion'
-Plug 'christoomey/vim-system-copy'
-Plug 'haya14busa/incsearch.vim'
-Plug 'junegunn/seoul256.vim'
-Plug 'junegunn/vim-easy-align'
-Plug 'kana/vim-textobj-function'
-Plug 'kana/vim-textobj-indent'
-Plug 'kana/vim-textobj-user'
-Plug 'tpope/vim-commentary'
-Plug 'tpope/vim-fugitive'
-Plug 'tpope/vim-repeat'
-Plug 'tpope/vim-sleuth'
-Plug 'tpope/vim-surround'
-Plug 'Vimjas/vim-python-pep8-indent'
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
-Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
-Plug 'vim-test/vim-test'
-Plug 'sebdah/vim-delve'
-Plug 'ElmCast/elm-vim'
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'vimwiki/vimwiki'
-Plug 'hashivim/vim-terraform'
-Plug 'lervag/vimtex'
-Plug 'xuhdev/vim-latex-live-preview'
-
-call plug#end()
 filetype plugin indent on
 
 " general stuff
-let mapleader=" "
-let maplocalleader=";"
-
 let g:fzf_layout = { 'down': '~20%' }
 let g:fzf_buffers_jump = 1
 let g:fzf_colors =
@@ -72,41 +36,9 @@ nnoremap <silent> <C-P> :Files<CR>
 nnoremap <silent> <C-G> :Rg<CR>
 nnoremap <silent> <leader>p :Buffers<CR>
 
-" unmap arrow keys to force myself to use HJKL
-for prefix in ['i', 'n', 'v']
-  for key in ['<Down>', '<Left>', '<Right>', '<Up>']
-    exe prefix . "noremap" . key . " <Nop>"
-  endfor
-endfor
-
 " ctrlP
 set wildignore+=*.pyc,*.swp,*.swo
 
-" vim-fugitive settings
-set diffopt+=vertical
-
-" general stuff
-set nocompatible
-set hidden
-set hlsearch
-set nobackup
-set nowritebackup
-set cmdheight=2
-set updatetime=300
-set signcolumn=yes
-"set cursorline
-set number
-"set relativenumber
-set ruler
-set splitbelow
-set splitright
-syntax on
-set list
-set listchars=eol:¬,tab:»\ ,nbsp:·,trail:·,extends:→,precedes:←
-set nofoldenable
-set pastetoggle=<F2>
-set backspace=2
-set tabstop=4
 
 nmap <silent> <C-h> :cprev<CR>
 nmap <silent> <C-l> :cnext<CR>
