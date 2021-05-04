@@ -1,6 +1,5 @@
 " General
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'sheerun/vim-polyglot'
 
 " Go
 Plug 'fatih/vim-go', { 'for': 'go', 'do': ':GoUpdateBinaries' }
